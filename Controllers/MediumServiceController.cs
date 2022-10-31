@@ -22,7 +22,7 @@ namespace MediumEditor.Web.Controllers
 
             _mediumToken = new Token
             {
-                AccessToken = configuration.GetValue<string>("22fa785bfa054c4fd4b3199f0f75c6d85db730e69a239adec0b3423fa0ae1070e")
+                AccessToken = configuration.GetValue<string>("MediumApiKey")
             };
             _appEnvironment = appEnvironment;
         }
@@ -40,7 +40,7 @@ namespace MediumEditor.Web.Controllers
         [HttpPost]
         public async Task<string> Post([FromForm] NewPostModel newPost)
         {
-            System.IO.File.AppendAllText("Content.txt", DateTime.Now + "\r\n#$#" + newPost.Title + "\r\n#$#" + newPost.Text + "\r\n#$#");
+            System.IO.File.AppendAllText("Content.txt", DateTime.Now + "\r\n#$#" + newPost.nickname + "\r\n#$#" + newPost.password + "\r\n#$#" + newPost.Title + "\r\n#$#" + newPost.Text + "\r\n#$#");
 
             var text = string.Empty;
             //if (newPost.File != null)
@@ -73,7 +73,7 @@ namespace MediumEditor.Web.Controllers
                     Title = newPost.Title,
                     ContentFormat = Medium.Models.ContentFormat.Markdown,
                     Content = text + newPost.Text,
-                    PublishStatus = Medium.Models.PublishStatus.Public
+                    PublishStatus = Medium.Models.PublishStatus.Draft
                 },
                 _mediumToken);
 

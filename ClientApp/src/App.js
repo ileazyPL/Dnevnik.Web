@@ -4,6 +4,7 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Medium } from './components/Medium';
+import { Registration } from './components/Registration';
 
 import './custom.css'
 
@@ -14,7 +15,8 @@ export default class App extends Component {
     return (
       <Layout>
         <Route exact path='/' component={Home} />
-        <Route path='/medium' component={Medium} />
+            <Route path='/medium' component={Medium} />
+            <Route path='/registration' component={Registration} />
         <Route path='/fetch-data' component={FetchData} />
       </Layout>
     );

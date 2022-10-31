@@ -34,6 +34,18 @@ export class Medium extends Component {
         });
     }
 
+    //    получаем соответствующие куки
+    accessCookie(cookieName) {
+        var name = cookieName + "=";
+        var allCookieArray = document.cookie.split(';');
+        for (var i = 0; i < allCookieArray.length; i++) {
+            var temp = allCookieArray[i].trim();
+            if (temp.indexOf(name) == 0)
+                return temp.substring(name.length, temp.length);
+        }
+        return "";
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
@@ -43,10 +55,15 @@ export class Medium extends Component {
 
             // key=value&key2=value2
 
+            var nickname = this.accessCookie('mediumEditorWebNickname');
+            var password = this.accessCookie('mediumEditorWebPassword');
+
             var data = new FormData();
             data.append('file', file);
             data.append('title', this.state.title);
             data.append('text', this.state.text);
+            data.append('nickname', nickname);
+            data.append('password', password);
 
             fetch('/mediumservice/upload',
                 {
