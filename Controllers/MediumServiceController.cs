@@ -11,13 +11,15 @@ namespace MediumEditor.Web.Controllers
     [Route("[controller]")]
     public class MediumServiceController : ControllerBase
     {
-        private readonly Client _mediumClient;
+        private readonly Client _mediumClient; 
         private readonly Token _mediumToken;
         private readonly IWebHostEnvironment _appEnvironment;
 
         public MediumServiceController(IConfiguration configuration, IWebHostEnvironment appEnvironment)
         {
             _mediumClient = new Client();
+
+
             _mediumToken = new Token
             {
                 AccessToken = configuration.GetValue<string>("22fa785bfa054c4fd4b3199f0f75c6d85db730e69a239adec0b3423fa0ae1070e")
